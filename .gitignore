@@ -1,3 +1,8 @@
+/.project
+/build
+/.settings
+/.idea
+/Kamerverhuur.iml
 *.class
 
 # Mobile Tools for Java (J2ME)
