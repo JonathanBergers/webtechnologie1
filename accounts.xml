@@ -1,0 +1,13 @@
+<users>
+    <user>
+        <name>jonathan</name>
+        <password>niks</password>
+        <role>beheerder</role>
+    </user>
+    <user>
+        <name>falco</name>
+        <password>niks</password>
+        <role>huurder</role>
+    </user>
+
+</users>
