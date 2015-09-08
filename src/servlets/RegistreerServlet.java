@@ -1,7 +1,9 @@
 package servlets;
 
+import model.Beheerder;
 import model.Huurder;
 import model.User;
+import model.Verhuurder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,15 +44,23 @@ public class RegistreerServlet extends HttpServlet {
             htmlRespone += "<p>Probeer het <a href=\"registreer.html\">opnieuw</a></p>";
         } else {
             //alles gaat goed
-
-            ArrayList<User> u = (ArrayList<User>) getServletContext().getAttribute("users");
-            if(u!=null){
-                u.add(new Huurder(gebruikersnaam, wachtwoord));
+            User user;
+            if(req.getParameter("rol").equals("huurder")){
+                user = new Huurder(gebruikersnaam, wachtwoord);
+            } else if(req.getParameter("rol").equals("verhuurder")){
+                user = new Verhuurder(gebruikersnaam, wachtwoord);
             } else {
+                user = new Beheerder(gebruikersnaam, wachtwoord);
+            }
+            ArrayList<User> u = (ArrayList<User>) getServletContext().getAttribute("users");
+            if(u==null){
                 System.out.println("users == null");
-                getServletContext().setAttribute("users", u);
+                getServletContext().setAttribute("users", new ArrayList<User>());
+                u = (ArrayList<User>) getServletContext().getAttribute("users");
             }
 
+            u.add(user);
+            getServletContext().setAttribute("users", u);
 
 
             htmlRespone += "<h1> Geregistreerd </h1><br>";

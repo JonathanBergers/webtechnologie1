@@ -5,17 +5,20 @@
     <title>Registreer</title>
 </head>
 <body>
-    <form class="form" method="post" action="/Registreer">
+    <form class="form" method="post" action="/Registreer" id="registreer">
         <h1>kies een gebruikersnaam en een wachtwoord</h1><br>
         <label>gebruikersnaam</label><br>
         <input type="text" name="gebruikersnaamNieuw"><br><br>
         <label>wachtwoord</label><br>
         <input type="password" name="wachtwoordNieuw1"><br>
         <label>nog een keer het wachtwoord</label><br>
-        <input type="password" name="wachtwoordNieuw2"><br>
-        <input type="submit" value="Registreer">
-
-
+        <input type="password" name="wachtwoordNieuw2"><br><br>
+        <input type="submit" value="Registreer"><br><br>
     </form>
+    <select name="rol" form="registreer">
+        <option value="huurder">Huurder</option>
+        <option value="verhuurder">Verhuurder</option>
+        <option value="beheerder">Beheerder</option>
+    </select>
 </body>
 </html>
