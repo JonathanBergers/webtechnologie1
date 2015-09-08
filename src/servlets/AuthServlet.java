@@ -30,7 +30,7 @@ import java.util.List;
 public class AuthServlet extends javax.servlet.http.HttpServlet {
 
 
-    private List<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<User>();
 
 
    
