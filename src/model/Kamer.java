@@ -17,4 +17,9 @@ public class Kamer {
         this.plaats = plaats;
         this.verhuurder = verhuurder;
     }
+    public boolean hasVerhuurder(final Verhuurder v){
+
+        return verhuurder.equals(v);
+    }
+
 }

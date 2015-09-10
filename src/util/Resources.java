@@ -33,7 +33,8 @@ public class Resources {
 
     // application scope
     public static final String APPLICATION_USERS = "users";
-    
+    public static final String MODEL = "model";
+
     public static final String PATH_ACCOUNTS = "/home/jonathan/Dropbox/Studie/Jaar 2/Workspace/Kamerverhuur/accounts.xml";
 
 }

@@ -1,9 +1,7 @@
 package servlets;
 
-import model.Beheerder;
-import model.Huurder;
-import model.User;
-import model.Verhuurder;
+import model.*;
+import util.Resources;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +30,7 @@ public class RegistreerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
+        Model m = (Model) getServletContext().getAttribute(Resources.MODEL);
         String gebruikersnaam = req.getParameter("gebruikersnaamNieuw");
         String wachtwoord = req.getParameter("wachtwoordNieuw1");
 
@@ -52,15 +51,8 @@ public class RegistreerServlet extends HttpServlet {
             } else {
                 user = new Beheerder(gebruikersnaam, wachtwoord);
             }
-            ArrayList<User> u = (ArrayList<User>) getServletContext().getAttribute("users");
-            if(u==null){
-                System.out.println("users == null");
-                getServletContext().setAttribute("users", new ArrayList<User>());
-                u = (ArrayList<User>) getServletContext().getAttribute("users");
-            }
 
-            u.add(user);
-            getServletContext().setAttribute("users", u);
+            m.addUser(user);
 
 
             htmlRespone += "<h1> Geregistreerd </h1><br>";

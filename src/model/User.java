@@ -24,6 +24,11 @@ public abstract class User implements Serializable{
         return "Naam: " + name + " pass: " + password;
     }
 
+    public boolean hasName(final String username){
+
+        return this.name.equals(username);
+    }
+
 
 
 }
