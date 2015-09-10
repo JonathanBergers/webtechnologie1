@@ -81,7 +81,8 @@ public class AuthServlet extends javax.servlet.http.HttpServlet {
             // bij forward wordt de originele methode gebruikt, de post wordt dus aangeroepen.
 
             if(u instanceof Huurder){
-                getServletContext().getRequestDispatcher(Resources.PAGE_HUURDER_MAIN).forward(request, response);
+                //getServletContext().getRequestDispatcher(Resources.PAGE_HUURDER_MAIN).forward(request, response);
+                response.sendRedirect(Resources.PAGE_HUURDER_MAIN);
 
             }else if(u instanceof Verhuurder){
                 getServletContext().getRequestDispatcher(Resources.PAGE_VERHUURDER_MAIN).forward(request, response);
