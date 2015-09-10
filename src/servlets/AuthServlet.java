@@ -5,11 +5,10 @@ import util.Resources;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -66,6 +65,23 @@ public class AuthServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher(Resources.PAGE_VERHUURDER_MAIN).forward(request, response);
 
             }else if(u instanceof Beheerder){
+
+                // java overhead code to get a cookie
+
+                for(Cookie c: request.getCookies()){
+                    // cookie already exists
+                    if(c.getName().equals(Resources.BEHEERDER_COOKIE)){
+
+                        response.sendRedirect(Resources.PAGE_BEHEERDER_MAIN);
+                        return;
+                    }
+                }
+
+
+                // maak cookie voor beheerder
+                Cookie cookie = new Cookie(Resources.BEHEERDER_COOKIE,  "0");
+                response.addCookie(cookie);
+
                 response.sendRedirect(Resources.PAGE_BEHEERDER_MAIN);
                 //getServletContext().getRequestDispatcher(Resources.PAGE_BEHEERDER_MAIN).forward(request, response);
 

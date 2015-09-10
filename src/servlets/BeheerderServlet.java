@@ -5,6 +5,7 @@ import util.Resources;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +43,21 @@ public class BeheerderServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        // cookie ophalen
+        for(Cookie c: request.getCookies()){
+            // cookie already exists
+            if(c.getName().equals(Resources.BEHEERDER_COOKIE)){
+
+                       c.setValue("" + Integer.parseInt(c.getValue()) + 1);
+            }
+        }
+
+
+
+
+
 
         timesVisited ++;
         // users ophalen uit de context.

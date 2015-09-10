@@ -37,4 +37,6 @@ public class Resources {
 
     public static final String PATH_ACCOUNTS = "/home/jonathan/Dropbox/Studie/Jaar 2/Workspace/Kamerverhuur/accounts.xml";
 
+    public static final String BEHEERDER_COOKIE = "beheerdercookie";
+
 }
