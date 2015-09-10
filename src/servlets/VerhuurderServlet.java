@@ -40,18 +40,21 @@ public class VerhuurderServlet extends HttpServlet {
 
 
 
-        String sGrootte = req.getParameter("kamerGrootte");
+        String roomSizeParameter = req.getParameter("kamerGrootte");
+
         //check of de parameter is doorgegeven, dit is niet het geval als de verhuurder geen kamer heeft toegevoegd
-        if(sGrootte != null){
-            if(!sGrootte.isEmpty()){
-                int grootte = Integer.parseInt(sGrootte);
-                String sHuurprijs = req.getParameter("kamerPrijs");
-                if(!sHuurprijs.isEmpty()){
-                    int huurprijs = Integer.parseInt(sHuurprijs);
-                    String plaats = req.getParameter("kamerPlaats");
-                    if(!plaats.isEmpty()){
-                        m.addRoom(new Kamer(huurprijs, grootte, plaats, verhuurder));
+        if(roomSizeParameter != null){
+            if(!roomSizeParameter.isEmpty()){
+                int roomSize = Integer.parseInt(roomSizeParameter);
+                String priceParameter = req.getParameter("kamerPrijs");
+                if(!priceParameter.isEmpty()){
+                    int price = Integer.parseInt(priceParameter);
+                    String place = req.getParameter("kamerPlaats");
+
+                    if(!place.isEmpty()){
+                        m.addRoom(new Kamer(price, roomSize, place, verhuurder));
                         htmlRespone += "<h1>Kamer is toegevoegd!</h1><br><br>";
+
                     }
                 }
             }

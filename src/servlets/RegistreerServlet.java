@@ -1,5 +1,6 @@
 package servlets;
 
+import com.sun.deploy.net.HttpResponse;
 import model.*;
 import util.Resources;
 
@@ -31,39 +32,80 @@ public class RegistreerServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         Model m = (Model) getServletContext().getAttribute(Resources.MODEL);
-        String gebruikersnaam = req.getParameter("gebruikersnaamNieuw");
-        String wachtwoord = req.getParameter("wachtwoordNieuw1");
+        String username = req.getParameter("gebruikersnaamNieuw");
+        String password = req.getParameter("wachtwoordNieuw1");
+        String secondPassword = req.getParameter("wachtwoordNieuw2");
+
 
         String htmlRespone = "<html>";
 
 
-        if(!wachtwoord.equals( req.getParameter("wachtwoordNieuw2")) || wachtwoord.isEmpty()||  req.getParameter("wachtwoordNieuw2").isEmpty() || gebruikersnaam.isEmpty()){
-            //fout bij het registreren
-            htmlRespone += "<h1> Er ging iets fout </h1><br><br>";
-            htmlRespone += "<p>Probeer het <a href=\"registreer.html\">opnieuw</a></p>";
-            // return response
-            htmlRespone += "</html>";
-            out.println(htmlRespone);
-        } else {
-            //alles gaat goed
-            User user;
-            if(req.getParameter("rol").equals("huurder")){
-                user = new Huurder(gebruikersnaam, wachtwoord);
-            } else if(req.getParameter("rol").equals("verhuurder")){
-                user = new Verhuurder(gebruikersnaam, wachtwoord);
-            } else {
-                user = new Beheerder(gebruikersnaam, wachtwoord);
-            }
 
-            m.addUser(user);
 
-            req.getRequestDispatcher(Resources.PAGE_MAIN).forward(req,resp);
+        // foute invoer, of geen gelijk wachtwoord
+        if(!password.equals(secondPassword)) {
+
+            out.write(htmlRespone += makeFalseRegResponse());
+            out.flush();
+            return;
+
+        }
+        if(password.isEmpty()) {
+            out.write(htmlRespone += makeFalseRegResponse());
+            out.flush();
+            return;
+        }
+        if(secondPassword.isEmpty()) {
+            out.write(htmlRespone += makeFalseRegResponse());
+            out.flush();
+            return;
+        }
+
+        if(username.isEmpty()){
+            out.write(htmlRespone += makeFalseRegResponse());
+            out.flush();
+            return;
 
         }
 
 
 
+        //alles gaat goed
+        User user;
+        if(req.getParameter("rol").equals("huurder")){
+            user = new Huurder(username, password);
+        } else if(req.getParameter("rol").equals("verhuurder")){
+            user = new Verhuurder(username, password);
+        } else {
+            user = new Beheerder(username, password);
+        }
 
+        m.addUser(user);
+
+        req.getRequestDispatcher(Resources.PAGE_MAIN).forward(req,resp);
+
+    }
+
+
+
+
+
+
+
+
+
+
+    private String makeFalseRegResponse() {
+
+
+
+
+        String htmlResponse = "<h1> Er ging iets fout </h1><br><br>";
+        htmlResponse += "<p>Probeer het <a href=\"registreer.html\">opnieuw</a></p>";
+        // return response
+        htmlResponse += "</html>";
+
+        return htmlResponse;
 
 
 
