@@ -10,7 +10,7 @@ public class Resources {
 
     public static final String PAGE_MAIN = "/index.html";
     public static final String PAGE_NO_ACCESS = PAGE_ROOT + "/NoAccess";
-    public static final String PAGE_FOUTE_LOGIN = PAGE_ROOT + "/NoAccess";
+    public static final String PAGE_FOUTE_LOGIN = "/WEB-INF/fouteLogin.html";
 
     public static final String PAGE_HUURDER_MAIN = PAGE_ROOT + "/Huurder/Main";
     public static final String PAGE_VERHUURDER_MAIN = PAGE_ROOT + "/Verhuurder/Main";

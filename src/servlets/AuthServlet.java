@@ -30,8 +30,8 @@ public class AuthServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         // geen gegevens ingevuld
-        if(username == null || password == null){
-            response.sendRedirect(Resources.PAGE_FOUTE_LOGIN);
+        if(username.isEmpty() || password.isEmpty()){
+            request.getRequestDispatcher(Resources.PAGE_FOUTE_LOGIN).forward(request, response);
         }
 
 
@@ -72,7 +72,7 @@ public class AuthServlet extends HttpServlet {
             }
 
         }else{
-            response.sendRedirect(Resources.PAGE_FOUTE_LOGIN);
+            request.getRequestDispatcher(Resources.PAGE_FOUTE_LOGIN).forward(request, response);
         }
 
     }

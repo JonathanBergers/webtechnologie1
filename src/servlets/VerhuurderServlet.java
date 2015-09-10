@@ -21,8 +21,14 @@ import java.util.ArrayList;
 @WebServlet(name = "VerhuurderServlet", urlPatterns = Resources.PAGE_VERHUURDER_MAIN)
 public class VerhuurderServlet extends HttpServlet {
 
+    private Model m;
 
 
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        m = (Model) getServletContext().getAttribute(Resources.MODEL);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +36,6 @@ public class VerhuurderServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         String htmlRespone = "<html>";
-        Model m = (Model) getServletContext().getAttribute(Resources.MODEL);
         Verhuurder verhuurder = (Verhuurder) req.getSession(false).getAttribute(Resources.SESSION_USER);
 
 

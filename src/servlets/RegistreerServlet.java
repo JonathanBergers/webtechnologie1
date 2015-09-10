@@ -41,6 +41,9 @@ public class RegistreerServlet extends HttpServlet {
             //fout bij het registreren
             htmlRespone += "<h1> Er ging iets fout </h1><br><br>";
             htmlRespone += "<p>Probeer het <a href=\"registreer.html\">opnieuw</a></p>";
+            // return response
+            htmlRespone += "</html>";
+            out.println(htmlRespone);
         } else {
             //alles gaat goed
             User user;
@@ -54,18 +57,14 @@ public class RegistreerServlet extends HttpServlet {
 
             m.addUser(user);
 
+            req.getRequestDispatcher(Resources.PAGE_MAIN).forward(req,resp);
 
-            htmlRespone += "<h1> Geregistreerd </h1><br>";
-            htmlRespone += "<p>Gebruikersnaam = " + gebruikersnaam +" <br> " + "Wachtwoord = " + wachtwoord + "<br><br>";
-            htmlRespone += "Nu wil ik graag <a href=\"index.html\">inloggen</a></p>";
         }
 
 
 
 
-        // return response
-        htmlRespone += "</html>";
-        out.println(htmlRespone);
+
 
 
     }
