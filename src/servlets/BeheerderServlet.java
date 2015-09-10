@@ -24,8 +24,8 @@ import java.util.List;
 @WebServlet(name = "BeheerderServlet", urlPatterns = Resources.PAGE_BEHEERDER_MAIN)
 public class BeheerderServlet extends HttpServlet {
 
-
-    private int timesVisited = 0;
+//
+//    private int timesVisited = 0;
 
     @Override
     public void init() throws ServletException {
@@ -45,12 +45,14 @@ public class BeheerderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+        Cookie ck = null;
         // cookie ophalen
         for(Cookie c: request.getCookies()){
             // cookie already exists
             if(c.getName().equals(Resources.BEHEERDER_COOKIE)){
 
-                       c.setValue("" + Integer.parseInt(c.getValue()) + 1);
+                ck = c;
+                       ck.setValue("" + Integer.parseInt(c.getValue()) + 1);
             }
         }
 
@@ -58,8 +60,8 @@ public class BeheerderServlet extends HttpServlet {
 
 
 
-
-        timesVisited ++;
+//
+//        timesVisited ++;
         // users ophalen uit de context.
         List<User> users = (List<User>) getServletContext().getAttribute(Resources.APPLICATION_USERS);
 
@@ -75,7 +77,7 @@ public class BeheerderServlet extends HttpServlet {
 
         out.println("<HEAD><TITLE>ALL USERS</TITLE></HEAD>");
         out.println("<BODY>");
-        out.println("<H1>"+ "U heeft deze pagina " + timesVisited + " keer bezocht" + "</H1>");
+        out.println("<H1>"+ "U heeft deze pagina " + ck.getValue() + " keer bezocht" + "</H1>");
         out.println("<H2> ALL USERS </H2>");
 
         for(User u: users){
