@@ -21,5 +21,18 @@ public class Kamer {
 
         return verhuurder.equals(v);
     }
+    public boolean canBeRented(int huurprijs){
+        return(huurprijs>=this.huurprijs);
+    }
+    public boolean isLoacatedAt(String plaats){
+        return(plaats.equalsIgnoreCase(this.plaats));
+    }
+    public boolean hasSize(int grootte){
+        return(grootte<=this.grootte);
+    }
 
+    @Override
+    public String toString() {
+        return "Kamer: huurprijs = "+huurprijs+", grootte = "+grootte+" en plaats = "+plaats;
+    }
 }

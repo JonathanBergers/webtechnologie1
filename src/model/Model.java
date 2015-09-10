@@ -88,6 +88,9 @@ public class Model implements Serializable {
         return false;
 
     }
+    public void addRoom(Kamer k){
+        getRooms().add(k);
+    }
 
 
 }

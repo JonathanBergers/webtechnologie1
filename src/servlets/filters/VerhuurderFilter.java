@@ -24,7 +24,7 @@ public class VerhuurderFilter extends KamerverhuurFilter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        if(userIsHuurder(request)){
+        if(!userIsVerhuurder(request)){
             redirect(request, response, chain, Resources.PAGE_NO_ACCESS, REDIRECT_REASON);
 
         }else{
