@@ -67,15 +67,17 @@ public class AuthServlet extends HttpServlet {
             }else if(u instanceof Beheerder){
 
                 // java overhead code to get a cookie
+                if(request.getCookies() != null){
+                    for(Cookie c: request.getCookies()){
+                        // cookie already exists
+                        if(c.getName().equals(Resources.BEHEERDER_COOKIE)){
 
-                for(Cookie c: request.getCookies()){
-                    // cookie already exists
-                    if(c.getName().equals(Resources.BEHEERDER_COOKIE)){
-
-                        response.sendRedirect(Resources.PAGE_BEHEERDER_MAIN);
-                        return;
+                            response.sendRedirect(Resources.PAGE_BEHEERDER_MAIN);
+                            return;
+                        }
                     }
                 }
+
 
 
                 // maak cookie voor beheerder

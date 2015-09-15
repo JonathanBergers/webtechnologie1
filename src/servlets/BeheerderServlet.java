@@ -46,13 +46,17 @@ public class BeheerderServlet extends HttpServlet {
 
 
         Cookie ck = null;
+
+
         // cookie ophalen
         for(Cookie c: request.getCookies()){
             // cookie already exists
             if(c.getName().equals(Resources.BEHEERDER_COOKIE)){
 
                 ck = c;
-                       ck.setValue("" + Integer.parseInt(c.getValue()) + 1);
+                       ck.setValue("" + (Integer.parseInt(c.getValue()) + 1));
+                response.addCookie(ck);
+                break;
             }
         }
 
