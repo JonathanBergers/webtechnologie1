@@ -50,9 +50,9 @@ public class BeheerderServlet extends HttpServlet {
         for(Cookie c: request.getCookies()){
             // cookie already exists
             if(c.getName().equals(Resources.BEHEERDER_COOKIE)){
-
-                ck = c;
-                       ck.setValue("" + Integer.parseInt(c.getValue()) + 1);
+            	c.setValue("" + (Integer.parseInt(c.getValue()) + 1));
+            	response.addCookie(c);
+            	break;                       
             }
         }
 
